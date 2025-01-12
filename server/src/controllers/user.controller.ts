@@ -15,6 +15,18 @@ export class UserController extends BaseController {
         this.userService = new UserService();   
     }
 
+    async getContacts(req: Request, res:Response) {
+        try {
+            const user = await authenticate(req);
+
+            const result = await this.userService.getContacts(user._id.toString());
+
+            this.sendResponse(res, 200, result, "Contacts fetched successfully");
+        } catch (error: any) {
+            this.sendError(res, error.statusCode || 500, error);
+        }
+    }
+
     async updateProfile(req: Request, res:Response) {
         try {
             const user = await authenticate(req);
@@ -26,11 +38,9 @@ export class UserController extends BaseController {
                 throw new LPError("Profile pic is required", 400);
             }
 
-            const uploadResponse = await cloudinary.uploader.upload(profilePic);
+            const result = await this.userService.updateProfile(profilePic, userId.toString());
 
-            const updatedUser = await UserModel.findByIdAndUpdate(userId, {profilePic : uploadResponse.secure_url}, {new: true})
-
-            this.sendResponse(res, 200, "", "Profile Updated Successfully");
+            this.sendResponse(res, 200, result, "Profile Updated Successfully");
         } catch (error: any) {
             this.sendError(res, error.statusCode || 500, error);
         }

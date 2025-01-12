@@ -2,6 +2,7 @@ import { AuthService } from "../services/auth.service";
 import { BaseController } from "./base.controller";
 import { Request, Response } from "express";
 import { generateToken } from "../utils/token.utils";
+import { authenticate } from "../middlewares/auth.middleware";
 
 
 export class AuthController extends BaseController {
@@ -44,6 +45,15 @@ export class AuthController extends BaseController {
         try {
             res.cookie("authToken", "", {maxAge : 0});
             this.sendResponse(res, 200, "", "User logged out successfully");
+        } catch (error: any) {
+            this.sendError(res, error.statusCode || 500, error);
+        }
+    }
+
+    async check(req: Request, res:Response) : Promise<void> {
+        try {
+            const user = authenticate(req);
+            this.sendResponse(res, 200, user, "User is authenticated");
         } catch (error: any) {
             this.sendError(res, error.statusCode || 500, error);
         }

@@ -7,6 +7,7 @@ const router = express.Router();
 
 const userController = new UserController();
 
+router.get("/users", userController.getContacts.bind(userController));
 router.patch("/update-profile", userController.updateProfile.bind(userController));
 
 export default router;
