@@ -1,4 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
+import { UserValidatorResponse } from "../validators/auth.validator";
+
+
 
 
 const userSchema = new mongoose.Schema(
@@ -14,6 +17,8 @@ const userSchema = new mongoose.Schema(
     }
 )
 
-const UserModel = mongoose.model("User", userSchema);
+export type UserDocument = UserValidatorResponse & Document;
+
+const UserModel = mongoose.model<UserDocument>("User", userSchema);
 
 export default UserModel;

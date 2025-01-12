@@ -46,7 +46,7 @@ export class AuthService {
         lastName: user.lastName,
         password: user.password,
         profilePic: user.profilePic,
-        created_at: user.createdAt
+        created_at: user.created_at
     };
   }
 }
