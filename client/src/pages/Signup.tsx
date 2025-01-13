@@ -3,7 +3,7 @@ import { useAuthStore } from '../store/useAuthStore';
 import { Link } from 'react-router-dom';
 import { TbMessageChatbot } from "react-icons/tb";
 import toast from 'react-hot-toast';
-import AuthSideImage from "../assets/auth-sidebar.png";
+import AuthSideImage from "auth-sidebar.png";
 import Input from '../ui/Input';
 import { Button } from '../ui/Button';
 
