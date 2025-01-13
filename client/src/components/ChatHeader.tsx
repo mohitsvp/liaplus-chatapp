@@ -1,4 +1,3 @@
-import { BiCross } from "react-icons/bi";
 import { useAuthStore } from "../store/useAuthStore";
 import { useChatStore } from "../store/useChatStore";
 import { FaUserCircle } from "react-icons/fa";
