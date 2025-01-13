@@ -3,7 +3,7 @@ import { useChatStore } from "../store/useChatStore";
 import toast from "react-hot-toast";
 import { ImImage } from "react-icons/im";
 import { BiSend } from "react-icons/bi";
-import { RxCross1, RxCrossCircled } from "react-icons/rx";
+import { RxCrossCircled } from "react-icons/rx";
 import Input from "../ui/Input";
 
 const MessageInput = () => {
