@@ -20,7 +20,9 @@ export class MessageController extends BaseController {
 
             const senderId = user._id;
 
-            const result = this.messageService.getFriendMessages(senderId.toString(), id);
+            const result = await this.messageService.getFriendMessages(senderId.toString(), id);
+
+            console.log("result", result);
 
             this.sendResponse(res, 200, result, "Messages fetched successfully");
 
@@ -38,7 +40,7 @@ export class MessageController extends BaseController {
 
             const result = await this.messageService.sendMessage(senderId.toString(), id,text, image);
 
-            this.sendResponse(res, 201, result, "Message sent successfully");
+            return this.sendResponse(res, 201, result, "Message sent successfully")
 
         } catch (error: any) {
             this.sendError(res, error.statusCode || 500, error);

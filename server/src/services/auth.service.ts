@@ -27,7 +27,9 @@ export class AuthService {
 
 
   async login(email: string, password: string): Promise<UserValidatorResponse> {
+
     const user = await UserModel.findOne({email});
+
 
     if (!user) {
         throw new LPError("Invalid Credentials", 400);

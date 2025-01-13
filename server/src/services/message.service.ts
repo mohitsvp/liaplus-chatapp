@@ -1,4 +1,5 @@
 import cloudinary from "../lib/cloudinary";
+import { getReceiverSocketId, io } from "../lib/socket";
 import MessageModel from "../models/message.model";
 
 
@@ -26,6 +27,14 @@ export class MessageService {
             image : imgUrl
         })
 
-        return await message.save();
+        const res =  await message.save();
+
+        const receiverSocketId = getReceiverSocketId(receiverId);
+
+        if (receiverId) {
+            io.to(receiverSocketId).emit("newMessage", message);
+        }
+
+        return res;
     }
 }

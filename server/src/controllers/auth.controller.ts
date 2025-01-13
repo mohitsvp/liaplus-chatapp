@@ -52,9 +52,10 @@ export class AuthController extends BaseController {
 
     async check(req: Request, res:Response) : Promise<void> {
         try {
-            const user = authenticate(req);
-            this.sendResponse(res, 200, user, "User is authenticated");
+            const user = await authenticate(req);
+            this.sendResponse(res, 200, user, "User is authenticated")
         } catch (error: any) {
+            console.log("error ", error)
             this.sendError(res, error.statusCode || 500, error);
         }
     }

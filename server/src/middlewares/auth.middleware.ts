@@ -5,11 +5,10 @@ import { JWT_SECRET_KEY } from "../config";
 import UserModel from "../models/user.model";
 import { UserValidatorResponse } from "../validators/auth.validator";
 
-
-
 export const authenticate = async (req: Request): Promise<UserValidatorResponse> => {
-    try {
         const token = req.cookies.authToken;
+
+        console.log("token", token);
 
         if (!token) {
             throw new LPError("Unauthorised - No token found", 401);
@@ -28,9 +27,4 @@ export const authenticate = async (req: Request): Promise<UserValidatorResponse>
         }
 
         return user;
-        // next();
-
-    } catch (error: any) {
-        throw new LPError("Error in validating token", 403);
-    }
 }

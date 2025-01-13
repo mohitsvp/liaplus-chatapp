@@ -6,6 +6,7 @@ const router = express.Router();
 
 const messageController = new MessageController();
 
-router.patch("/:id", messageController.getFriendMessage.bind(messageController));
+router.get("/:id", messageController.getFriendMessage.bind(messageController));
+router.post("/send/:id", messageController.sendMessage.bind(messageController));
 
 export default router;
