@@ -12,9 +12,8 @@ LiaPlus is a real-time chat application built using modern web technologies. It 
 3. [Installation](#installation)
 4. [Usage](#usage)
 5. [Code Flow](#code-flow)
-6. [Environment Variables](#environment-variables)
-7. [Contributing](#contributing)
-8. [License](#license)
+6. [Contributing](#contributing)
+7. [License](#license)
 
 ---
 
@@ -107,24 +106,6 @@ http://localhost:5173
 1. The server initializes in `server/src/server.ts`, setting up the Express app and Socket.IO server.
 2. API routes are defined in `server/src/routes`, handling user authentication and message management.
 3. Controllers in `server/src/controllers` process requests and interact with the database.
-
----
-
-## Environment Variables
-
-The application requires specific environment variables for both the client and server. Create `.env` files as follows:
-
-### Client `.env`
-```env
-VITE_API_URL=<backend-api-url>
-```
-
-### Server `.env`
-```env
-PORT=5173
-MONGO_URI=<your-mongodb-connection-string>
-JWT_SECRET=<your-jwt-secret>
-```
 
 ---
 
